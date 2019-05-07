@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/appscode/go/runtime"
 	"os"
+	"path/filepath"
 )
 
 // Example:
@@ -17,5 +19,11 @@ gomod-tools github.com/appscode/voyager
 `)
 		os.Exit(1)
 	}
+
+	dir := os.Args[1]
+	if !filepath.IsAbs(dir) {
+		dir = filepath.Join(runtime.GOPath(), dir)
+	}
+	fmt.Println("using repo:", dir)
 
 }
