@@ -1,5 +1,9 @@
 # github.com/appscode/go v0.0.0-20190424183524-60025f1135c9
 github.com/appscode/go/runtime
+# github.com/codegangsta/inject v0.0.0-20150114235600-33e0aa1cb7c0
+github.com/codegangsta/inject
+# github.com/codeskyblue/go-sh v0.0.0-20190412065543-76bd3d59ff27
+github.com/codeskyblue/go-sh
 # gopkg.in/yaml.v2 v2.2.2
 gopkg.in/yaml.v2
 # sigs.k8s.io/yaml v1.1.0
