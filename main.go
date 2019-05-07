@@ -37,13 +37,13 @@ gomod-tools github.com/appscode/voyager
 		if os.IsNotExist(err) {
 			// try for dep
 		}
-		log.Fatal(err)
+		log.Fatalln(err)
 	}
 	fmt.Println("found glide.yaml: ", glideFile)
 	var cfg Glide
 	err = yaml.Unmarshal(data, &cfg)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalln(err)
 	}
 
 	sh := shell.NewSession()
@@ -53,10 +53,20 @@ gomod-tools github.com/appscode/voyager
 	sh.PipeFail = true
 	sh.PipeStdErrors = true
 
-	sh.Command("go", "mod", "init")
+	err = sh.Command("go", "mod", "init").Run()
+	if err != nil {
+		log.Fatalln(err)
+	}
 	for _, x := range cfg.Import {
 		// go mod edit -replace=github.com/go-macaron/binding=github.com/tamalsaha/binding@pb
-		sh.Command("go", "mod", "edit", fmt.Sprintf("-replace=%s=%s@%s", x.Package, x.Repo, x.Version))
+		err = sh.Command("go", "mod", "edit", fmt.Sprintf("-replace=%s=%s@%s", x.Package, x.Repo, x.Version)).Run()
+		if err != nil {
+			fmt.Println(err)
+			// continue
+		}
 	}
-	sh.Command("go", "mod", "tidy")
+	err = sh.Command("go", "mod", "tidy").Run()
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
