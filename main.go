@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/appscode/go/runtime"
 	shell "github.com/codeskyblue/go-sh"
@@ -58,8 +59,17 @@ gomod-tools github.com/appscode/voyager
 		log.Fatalln(err)
 	}
 	for _, x := range cfg.Import {
+		if x.Repo == "" {
+			continue
+		}
+
+		repo := x.Repo
+		repo = strings.ReplaceAll(repo, "https://", "")
+		repo = strings.ReplaceAll(repo, "http://", "")
+		repo = strings.ReplaceAll(repo, ".git", "")
+
 		// go mod edit -replace=github.com/go-macaron/binding=github.com/tamalsaha/binding@pb
-		err = sh.Command("go", "mod", "edit", fmt.Sprintf("-replace=%s=%s@%s", x.Package, x.Repo, x.Version)).Run()
+		err = sh.Command("go", "mod", "edit", fmt.Sprintf("-replace=%s=%s@%s", x.Package, repo, x.Version)).Run()
 		if err != nil {
 			fmt.Println(err)
 			// continue
