@@ -1,0 +1,6 @@
+# github.com/appscode/go v0.0.0-20190424183524-60025f1135c9
+github.com/appscode/go/runtime
+# gopkg.in/yaml.v2 v2.2.2
+gopkg.in/yaml.v2
+# sigs.k8s.io/yaml v1.1.0
+sigs.k8s.io/yaml
