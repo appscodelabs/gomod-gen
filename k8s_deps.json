@@ -93,7 +93,7 @@
   },
   {
     "package": "github.com/evanphx/json-patch",
-    "version": "5858425f75500d40c52783dce87d085a483ce135"
+    "version": "v4.2.0"
   },
   {
     "package": "github.com/google/go-cmp",

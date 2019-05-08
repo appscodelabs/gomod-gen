@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 
 	"github.com/appscode/go/runtime"
@@ -52,6 +53,8 @@ gomod-tools github.com/appscode/voyager
 		if err != nil {
 			log.Fatalln(err)
 		}
+		sort.Slice(kp, func(i, j int) bool { return kp[i].Package < kp[j].Package })
+
 		for _, x := range kp {
 			if x.Repo != "" {
 				continue
