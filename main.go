@@ -53,13 +53,28 @@ gomod-tools github.com/appscode/voyager
 		sort.Slice(kp, func(i, j int) bool { return kp[i].Package < kp[j].Package })
 
 		for _, x := range kp {
-			if x.Repo != "" {
-				continue
-			}
 			err = sh.Command("go", "get", "-u", fmt.Sprintf("%s@%s", x.Package, x.Version)).Run()
 			if err != nil {
 				fmt.Println(err)
 				// continue
+			}
+			if x.Repo != "" {
+				repo := x.Repo
+				repo = strings.ReplaceAll(repo, "https://", "")
+				repo = strings.ReplaceAll(repo, "http://", "")
+				repo = strings.ReplaceAll(repo, ".git", "")
+
+				// go mod edit -replace=github.com/go-macaron/binding=github.com/tamalsaha/binding@pb
+				err = sh.Command("go", "mod", "edit", fmt.Sprintf("-replace=%s=%s@%s", x.Package, repo, x.Version)).Run()
+				if err != nil {
+					fmt.Println(err)
+					// continue
+				}
+				err = sh.Command("go", "mod", "tidy").Run()
+				if err != nil {
+					fmt.Println(err)
+					// continue
+				}
 			}
 		}
 		err = sh.Command("go", "mod", "tidy").Run()

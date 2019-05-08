@@ -25,7 +25,7 @@
   },
   {
     "package": "github.com/cpuguy83/go-md2man",
-    "version": "v1.0.8"
+    "version": "v1.0.10"
   },
   {
     "package": "github.com/davecgh/go-spew",
@@ -94,10 +94,6 @@
     "version": "v0.9.2"
   },
   {
-    "package": "github.com/russross/blackfriday",
-    "version": "v1.5.2"
-  },
-  {
     "package": "github.com/soheilhy/cmux",
     "version": "v0.1.4"
   },
@@ -147,10 +143,12 @@
   },
   {
     "package": "k8s.io/api",
+    "repo": "k8s.io/api",
     "version": "kubernetes-1.14.0"
   },
   {
     "package": "k8s.io/apiextensions-apiserver",
+    "repo": "k8s.io/apiextensions-apiserver",
     "version": "kubernetes-1.14.0"
   },
   {
@@ -167,6 +165,7 @@
   },
   {
     "package": "k8s.io/cli-runtime",
+    "repo": "k8s.io/cli-runtime",
     "version": "kubernetes-1.14.0"
   },
   {
@@ -174,11 +173,18 @@
     "version": "kubernetes-1.14.0"
   },
   {
+    "package": "k8s.io/cloud-provider",
+    "repo": "k8s.io/cloud-provider",
+    "version": "kubernetes-1.14.0"
+  },
+  {
     "package": "k8s.io/klog",
+    "repo": "k8s.io/klog",
     "version": "v0.3.0"
   },
   {
     "package": "k8s.io/kube-aggregator",
+    "repo": "k8s.io/kube-aggregator",
     "version": "kubernetes-1.14.0"
   },
   {
@@ -191,10 +197,12 @@
   },
   {
     "package": "k8s.io/metrics",
+    "repo": "k8s.io/metrics",
     "version": "kubernetes-1.14.0"
   },
   {
     "package": "k8s.io/utils",
+    "repo": "k8s.io/utils",
     "version": "c2654d5206da6b7b6ace12841e8f359bb89b443c"
   },
   {
