@@ -1,3 +1,5 @@
+# github.com/BurntSushi/toml v0.3.1
+github.com/BurntSushi/toml
 # github.com/appscode/go v0.0.0-20190424183524-60025f1135c9
 github.com/appscode/go/runtime
 # github.com/codegangsta/inject v0.0.0-20150114235600-33e0aa1cb7c0

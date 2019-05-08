@@ -1,6 +1,6 @@
 package main
 
-type K8sDeps []struct {
+type K8sPkg struct {
 	Package string `json:"package"`
 	Version string `json:"version"`
 	Repo    string `json:"repo,omitempty"`
