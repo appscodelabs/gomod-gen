@@ -201,7 +201,7 @@ gomod-tools github.com/appscode/voyager
 		if err != nil {
 			log.Fatalln(err)
 		}
-		os.Remove(filepath.Join(dir, "Gopkg.yaml"))
+		os.Remove(filepath.Join(dir, "Gopkg.toml"))
 		os.Remove(filepath.Join(dir, "Gopkg.lock"))
 		return
 	}
