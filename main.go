@@ -151,7 +151,7 @@ gomod-tools github.com/appscode/voyager
 	if Exists(depFile) {
 		fmt.Println("found Gopkg.toml: ", depFile)
 
-		err := sh.Command("dep", "update").Run()
+		err := sh.Command("dep", "ensure", "-update").Run()
 		if err != nil {
 			fmt.Println(err)
 			// continue
