@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/BurntSushi/toml"
 	"io/ioutil"
 	"log"
 	"os"
@@ -11,14 +10,12 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/BurntSushi/toml"
+
 	"github.com/appscode/go/runtime"
 	shell "github.com/codeskyblue/go-sh"
 	"sigs.k8s.io/yaml"
 )
-
-// Example:
-// gomod-tools <repo_path>
-// gomod-tools github.com/appscode/voyager
 
 func main() {
 	if len(os.Args) != 2 {
