@@ -169,6 +169,11 @@
     "version": "kubernetes-1.14.0"
   },
   {
+    "package": "k8s.io/component-base",
+    "repo": "k8s.io/component-base",
+    "version": "kubernetes-1.14.0"
+  },
+  {
     "package": "k8s.io/client-go",
     "version": "kubernetes-1.14.0"
   },
