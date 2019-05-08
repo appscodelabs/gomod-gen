@@ -135,6 +135,9 @@ gomod-tools github.com/appscode/voyager
 		if err != nil {
 			log.Fatalln(err)
 		}
+		os.Remove(filepath.Join(dir, "glide.yaml"))
+		os.Remove(filepath.Join(dir, "glide.lock"))
+		os.Remove(filepath.Join(dir, "glide-slow"))
 		return
 	}
 
@@ -186,6 +189,8 @@ gomod-tools github.com/appscode/voyager
 		if err != nil {
 			log.Fatalln(err)
 		}
+		os.Remove(filepath.Join(dir, "Gopkg.yaml"))
+		os.Remove(filepath.Join(dir, "Gopkg.lock"))
 		return
 	}
 }
