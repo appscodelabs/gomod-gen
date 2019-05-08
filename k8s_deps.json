@@ -21,11 +21,7 @@
   },
   {
     "package": "github.com/coreos/prometheus-operator",
-    "version": "v0.29.0"
-  },
-  {
-    "package": "github.com/cpuguy83/go-md2man",
-    "version": "v1.0.8"
+    "version": "b449a08aa4098531ccefa06173437e8f9593458d"
   },
   {
     "package": "github.com/cpuguy83/go-md2man",
@@ -57,7 +53,7 @@
   },
   {
     "package": "github.com/google/go-cmp",
-    "version": "6f77996f0c42f7b84e5a2b252227263f93432e9b"
+    "version": "v0.3.0"
   },
   {
     "package": "github.com/gorilla/websocket",
@@ -65,7 +61,7 @@
   },
   {
     "package": "github.com/graymeta/stow",
-    "version": "master",
+    "version": "ca5baa008ea321ea84980da11752f2590b485e87",
     "repo": "https://github.com/appscode/stow.git",
     "vcs": "git"
   },
@@ -75,11 +71,7 @@
   },
   {
     "package": "github.com/json-iterator/go",
-    "version": "1.1.5"
-  },
-  {
-    "package": "github.com/json-iterator/go",
-    "version": "1.1.5"
+    "version": "v1.1.6"
   },
   {
     "package": "github.com/kubepack/onessl",
@@ -107,7 +99,7 @@
   },
   {
     "package": "github.com/soheilhy/cmux",
-    "version": "8a8ea3c53959009183d7914522833c1ed8835020"
+    "version": "v0.1.4"
   },
   {
     "package": "github.com/spf13/afero",
@@ -127,7 +119,7 @@
   },
   {
     "package": "golang.org/x/net",
-    "version": "0ed95abb35c445290478a5348a7b38bb154135fd"
+    "version": "65e2d4e15006aab9813ff8769e768bbf4bb667a0"
   },
   {
     "package": "golang.org/x/sys",
@@ -155,79 +147,83 @@
   },
   {
     "package": "k8s.io/api",
-    "version": "kubernetes-1.13.5"
+    "version": "kubernetes-1.14.0"
   },
   {
     "package": "k8s.io/apiextensions-apiserver",
-    "version": "kubernetes-1.13.5"
+    "version": "kubernetes-1.14.0"
   },
   {
     "package": "k8s.io/apimachinery",
-    "version": "ac-1.13.5",
+    "version": "ac-1.14.0",
     "repo": "https://github.com/kmodules/apimachinery.git",
     "vcs": "git"
   },
   {
     "package": "k8s.io/apiserver",
-    "version": "ac-1.13.5",
+    "version": "ac-1.14.0",
     "repo": "https://github.com/kmodules/apiserver.git",
     "vcs": "git"
   },
   {
     "package": "k8s.io/cli-runtime",
-    "version": "kubernetes-1.13.5"
+    "version": "kubernetes-1.14.0"
   },
   {
     "package": "k8s.io/client-go",
-    "version": "kubernetes-1.13.5"
+    "version": "kubernetes-1.14.0"
+  },
+  {
+    "package": "k8s.io/klog",
+    "version": "v0.3.0"
   },
   {
     "package": "k8s.io/kube-aggregator",
-    "version": "kubernetes-1.13.5"
+    "version": "kubernetes-1.14.0"
   },
   {
     "package": "k8s.io/kube-openapi",
-    "version": "c59034cc13d587f5ef4e85ca0ade0c1866ae8e1d"
+    "version": "b3a7cee44a305be0a69e1b9ac03018307287e1b0"
   },
   {
     "package": "k8s.io/kubernetes",
-    "version": "v1.13.5"
+    "version": "v1.14.0"
   },
   {
     "package": "k8s.io/metrics",
-    "version": "kubernetes-1.13.5"
+    "version": "kubernetes-1.14.0"
   },
   {
     "package": "k8s.io/utils",
-    "version": "66066c83e385e385ccc3c964b44fd7dcd413d0ed"
+    "version": "c2654d5206da6b7b6ace12841e8f359bb89b443c"
   },
   {
     "package": "kmodules.xyz/client-go",
-    "version": "release-10.0"
+    "version": "release-11.0"
   },
   {
     "package": "kmodules.xyz/custom-resources",
-    "version": "release-10.0"
+    "version": "release-11.0"
   },
   {
     "package": "kmodules.xyz/monitoring-agent-api",
-    "version": "release-10.0"
+    "version": "release-11.0"
   },
   {
     "package": "kmodules.xyz/objectstore-api",
-    "version": "release-10.0"
+    "version": "release-11.0"
   },
   {
     "package": "kmodules.xyz/offshoot-api",
-    "version": "release-10.0"
+    "version": "release-11.0"
   },
   {
     "package": "kmodules.xyz/openshift",
-    "version": "release-10.0"
+    "version": "release-11.0"
   },
   {
     "package": "kmodules.xyz/webhook-runtime",
-    "version": "release-10.0"
+    "version": "release-11.0"
   },
   {
     "package": "sigs.k8s.io/yaml",
