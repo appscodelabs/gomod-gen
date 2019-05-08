@@ -62,6 +62,15 @@ gomod-tools github.com/appscode/voyager
 				// continue
 			}
 		}
+		err = sh.Command("go", "mod", "tidy").Run()
+		if err != nil {
+			log.Fatalln(err)
+		}
+		err = sh.Command("go", "mod", "vendor").Run()
+		if err != nil {
+			log.Fatalln(err)
+		}
+
 		return
 	}
 
