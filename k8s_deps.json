@@ -13,7 +13,7 @@
   },
   {
     "package": "github.com/appscode/osm",
-    "version": "0.10.0"
+    "version": "0.11.0"
   },
   {
     "package": "github.com/aws/aws-sdk-go",
@@ -75,7 +75,7 @@
   },
   {
     "package": "github.com/kubepack/onessl",
-    "version": "0.11.0"
+    "version": "0.12.0"
   },
   {
     "package": "github.com/mailru/easyjson",

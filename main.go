@@ -79,11 +79,11 @@ gomod-tools github.com/appscode/voyager
 		}
 		err = sh.Command("go", "mod", "tidy").Run()
 		if err != nil {
-			log.Fatalln(err)
+			fmt.Println(err)
 		}
 		err = sh.Command("go", "mod", "vendor").Run()
 		if err != nil {
-			log.Fatalln(err)
+			fmt.Println(err)
 		}
 
 		return
@@ -139,7 +139,7 @@ gomod-tools github.com/appscode/voyager
 		}
 		err = sh.Command("go", "mod", "tidy").Run()
 		if err != nil {
-			log.Fatalln(err)
+			fmt.Println(err)
 		}
 		os.Remove(filepath.Join(dir, "glide.yaml"))
 		os.Remove(filepath.Join(dir, "glide.lock"))
@@ -199,7 +199,7 @@ gomod-tools github.com/appscode/voyager
 		}
 		err = sh.Command("go", "mod", "tidy").Run()
 		if err != nil {
-			log.Fatalln(err)
+			fmt.Println(err)
 		}
 		os.Remove(filepath.Join(dir, "Gopkg.toml"))
 		os.Remove(filepath.Join(dir, "Gopkg.lock"))
