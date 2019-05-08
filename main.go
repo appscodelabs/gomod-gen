@@ -56,7 +56,7 @@ gomod-tools github.com/appscode/voyager
 
 	err = sh.Command("go", "mod", "init").Run()
 	if err != nil {
-		log.Fatalln(err)
+		fmt.Println(err)
 	}
 	for _, x := range cfg.Import {
 		if x.Repo == "" {
