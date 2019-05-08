@@ -91,6 +91,12 @@ gomod-tools github.com/appscode/voyager
 
 	glideFile := filepath.Join(dir, "glide.yaml")
 	if Exists(glideFile) {
+		err := sh.Command("glide", "slow").Run()
+		if err != nil {
+			fmt.Println(err)
+			// continue
+		}
+
 		data, err := ioutil.ReadFile(glideFile)
 		if err != nil {
 			if os.IsNotExist(err) {
@@ -145,12 +151,18 @@ gomod-tools github.com/appscode/voyager
 	if Exists(depFile) {
 		fmt.Println("found Gopkg.toml: ", depFile)
 
+		err := sh.Command("dep", "update").Run()
+		if err != nil {
+			fmt.Println(err)
+			// continue
+		}
+
 		var cfg Dep
 		if _, err := toml.DecodeFile(depFile, &cfg); err != nil {
 			log.Fatalln(err)
 		}
 
-		err := sh.Command("go", "mod", "init").Run()
+		err = sh.Command("go", "mod", "init").Run()
 		if err != nil {
 			fmt.Println(err)
 		}
