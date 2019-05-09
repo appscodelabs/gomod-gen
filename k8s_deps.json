@@ -21,7 +21,7 @@
   },
   {
     "package": "github.com/coreos/prometheus-operator",
-    "version": "b449a08aa4098531ccefa06173437e8f9593458d"
+    "version": "v0.29.0"
   },
   {
     "package": "github.com/cpuguy83/go-md2man",
@@ -242,5 +242,10 @@
   {
     "package": "sigs.k8s.io/yaml",
     "version": "v1.1.0"
+  },
+  {
+    "package": "gopkg.in/robfig/cron.v2",
+    "repo": "github.com/appscode/cron",
+    "version": "ca60c6d796d4b1f7bb2a8fd5271d8a59aeffb4bf"
   }
 ]
