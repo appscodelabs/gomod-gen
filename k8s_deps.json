@@ -244,6 +244,14 @@
     "version": "v1.1.0"
   },
   {
+    "package": "sigs.k8s.io/controller-runtime",
+    "version": "v0.2.0-alpha.1"
+  },
+  {
+    "package": "sigs.k8s.io/controller-tools",
+    "version": "v0.2.0-alpha.2"
+  },
+  {
     "package": "gopkg.in/robfig/cron.v2",
     "repo": "github.com/appscode/cron",
     "version": "ca60c6d796d4b1f7bb2a8fd5271d8a59aeffb4bf"
