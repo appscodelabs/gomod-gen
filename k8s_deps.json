@@ -255,5 +255,10 @@
     "package": "gopkg.in/robfig/cron.v2",
     "repo": "github.com/appscode/cron",
     "version": "ca60c6d796d4b1f7bb2a8fd5271d8a59aeffb4bf"
+  },
+  {
+    "package": "bitbucket.org/ww/goautoneg",
+    "repo": "gomodules.xyz/goautoneg",
+    "version": "a547fc61f48d567d5b4ec6f8aee5573d8efce11d"
   }
 ]
