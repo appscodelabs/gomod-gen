@@ -1,0 +1,307 @@
+{
+	"Module": {
+		"Path": "github.com/appscodelabs/gomod-tools/kubernetes/v1.18.3"
+	},
+	"Go": "1.14",
+	"Require": [
+		{
+			"Path": "k8s.io/api",
+			"Version": "v0.18.3"
+		},
+		{
+			"Path": "k8s.io/apiextensions-apiserver",
+			"Version": "v0.18.3"
+		},
+		{
+			"Path": "k8s.io/apimachinery",
+			"Version": "v0.18.3",
+			"Indirect": true
+		},
+		{
+			"Path": "k8s.io/apiserver",
+			"Version": "v0.18.3",
+			"Indirect": true
+		},
+		{
+			"Path": "k8s.io/cli-runtime",
+			"Version": "v0.18.3",
+			"Indirect": true
+		},
+		{
+			"Path": "k8s.io/cloud-provider",
+			"Version": "v0.18.3"
+		},
+		{
+			"Path": "k8s.io/component-base",
+			"Version": "v0.18.3",
+			"Indirect": true
+		},
+		{
+			"Path": "k8s.io/kube-aggregator",
+			"Version": "v0.18.3"
+		},
+		{
+			"Path": "k8s.io/kubectl",
+			"Version": "v0.18.3",
+			"Indirect": true
+		},
+		{
+			"Path": "k8s.io/kubernetes",
+			"Version": "v1.18.3",
+			"Indirect": true
+		},
+		{
+			"Path": "kmodules.xyz/client-go",
+			"Version": "v0.0.0-20200525195850-2fd180961371"
+		},
+		{
+			"Path": "kmodules.xyz/crd-schema-fuzz",
+			"Version": "v0.0.0-20200521005638-2433a187de95"
+		},
+		{
+			"Path": "kmodules.xyz/custom-resources",
+			"Version": "v0.0.0-20200601101635-ec36afabe85b",
+			"Indirect": true
+		},
+		{
+			"Path": "kmodules.xyz/monitoring-agent-api",
+			"Version": "v0.0.0-20200525002655-2aa50cb10ce9",
+			"Indirect": true
+		},
+		{
+			"Path": "kmodules.xyz/objectstore-api",
+			"Version": "v0.0.0-20200521103120-92080446e04d",
+			"Indirect": true
+		},
+		{
+			"Path": "kmodules.xyz/offshoot-api",
+			"Version": "v0.0.0-20200521035628-e135bf07b226",
+			"Indirect": true
+		},
+		{
+			"Path": "kmodules.xyz/openshift",
+			"Version": "v0.0.0-20200522123204-ce4abf5433c8",
+			"Indirect": true
+		},
+		{
+			"Path": "kmodules.xyz/prober",
+			"Version": "v0.0.0-20200521101241-adf06150535c",
+			"Indirect": true
+		},
+		{
+			"Path": "kmodules.xyz/webhook-runtime",
+			"Version": "v0.0.0-20200522123600-ca70a7e28ed0",
+			"Indirect": true
+		}
+	],
+	"Exclude": null,
+	"Replace": [
+		{
+			"Old": {
+				"Path": "bitbucket.org/ww/goautoneg"
+			},
+			"New": {
+				"Path": "gomodules.xyz/goautoneg",
+				"Version": "v0.0.0-20120707110453-a547fc61f48d"
+			}
+		},
+		{
+			"Old": {
+				"Path": "git.apache.org/thrift.git"
+			},
+			"New": {
+				"Path": "github.com/apache/thrift",
+				"Version": "v0.13.0"
+			}
+		},
+		{
+			"Old": {
+				"Path": "github.com/Azure/azure-sdk-for-go"
+			},
+			"New": {
+				"Path": "github.com/Azure/azure-sdk-for-go",
+				"Version": "v35.0.0+incompatible"
+			}
+		},
+		{
+			"Old": {
+				"Path": "github.com/Azure/go-ansiterm"
+			},
+			"New": {
+				"Path": "github.com/Azure/go-ansiterm",
+				"Version": "v0.0.0-20170929234023-d6e3b3328b78"
+			}
+		},
+		{
+			"Old": {
+				"Path": "github.com/Azure/go-autorest"
+			},
+			"New": {
+				"Path": "github.com/Azure/go-autorest",
+				"Version": "v13.0.0+incompatible"
+			}
+		},
+		{
+			"Old": {
+				"Path": "github.com/Azure/go-autorest/autorest"
+			},
+			"New": {
+				"Path": "github.com/Azure/go-autorest/autorest",
+				"Version": "v0.9.0"
+			}
+		},
+		{
+			"Old": {
+				"Path": "github.com/Azure/go-autorest/autorest/adal"
+			},
+			"New": {
+				"Path": "github.com/Azure/go-autorest/autorest/adal",
+				"Version": "v0.5.0"
+			}
+		},
+		{
+			"Old": {
+				"Path": "github.com/Azure/go-autorest/autorest/azure/auth"
+			},
+			"New": {
+				"Path": "github.com/Azure/go-autorest/autorest/azure/auth",
+				"Version": "v0.2.0"
+			}
+		},
+		{
+			"Old": {
+				"Path": "github.com/Azure/go-autorest/autorest/date"
+			},
+			"New": {
+				"Path": "github.com/Azure/go-autorest/autorest/date",
+				"Version": "v0.1.0"
+			}
+		},
+		{
+			"Old": {
+				"Path": "github.com/Azure/go-autorest/autorest/mocks"
+			},
+			"New": {
+				"Path": "github.com/Azure/go-autorest/autorest/mocks",
+				"Version": "v0.2.0"
+			}
+		},
+		{
+			"Old": {
+				"Path": "github.com/Azure/go-autorest/autorest/to"
+			},
+			"New": {
+				"Path": "github.com/Azure/go-autorest/autorest/to",
+				"Version": "v0.2.0"
+			}
+		},
+		{
+			"Old": {
+				"Path": "github.com/Azure/go-autorest/autorest/validation"
+			},
+			"New": {
+				"Path": "github.com/Azure/go-autorest/autorest/validation",
+				"Version": "v0.1.0"
+			}
+		},
+		{
+			"Old": {
+				"Path": "github.com/Azure/go-autorest/logger"
+			},
+			"New": {
+				"Path": "github.com/Azure/go-autorest/logger",
+				"Version": "v0.1.0"
+			}
+		},
+		{
+			"Old": {
+				"Path": "github.com/Azure/go-autorest/tracing"
+			},
+			"New": {
+				"Path": "github.com/Azure/go-autorest/tracing",
+				"Version": "v0.5.0"
+			}
+		},
+		{
+			"Old": {
+				"Path": "github.com/imdario/mergo"
+			},
+			"New": {
+				"Path": "github.com/imdario/mergo",
+				"Version": "v0.3.5"
+			}
+		},
+		{
+			"Old": {
+				"Path": "github.com/prometheus/client_golang"
+			},
+			"New": {
+				"Path": "github.com/prometheus/client_golang",
+				"Version": "v1.0.0"
+			}
+		},
+		{
+			"Old": {
+				"Path": "go.etcd.io/etcd"
+			},
+			"New": {
+				"Path": "go.etcd.io/etcd",
+				"Version": "v0.0.0-20191023171146-3cf2f69b5738"
+			}
+		},
+		{
+			"Old": {
+				"Path": "google.golang.org/grpc"
+			},
+			"New": {
+				"Path": "google.golang.org/grpc",
+				"Version": "v1.26.0"
+			}
+		},
+		{
+			"Old": {
+				"Path": "k8s.io/api"
+			},
+			"New": {
+				"Path": "github.com/kmodules/api",
+				"Version": "v0.18.4-0.20200524125823-c8bc107809b9"
+			}
+		},
+		{
+			"Old": {
+				"Path": "k8s.io/apimachinery"
+			},
+			"New": {
+				"Path": "github.com/kmodules/apimachinery",
+				"Version": "v0.19.0-alpha.0.0.20200520235721-10b58e57a423"
+			}
+		},
+		{
+			"Old": {
+				"Path": "k8s.io/apiserver"
+			},
+			"New": {
+				"Path": "github.com/kmodules/apiserver",
+				"Version": "v0.18.4-0.20200521000930-14c5f6df9625"
+			}
+		},
+		{
+			"Old": {
+				"Path": "k8s.io/client-go"
+			},
+			"New": {
+				"Path": "k8s.io/client-go",
+				"Version": "v0.18.3"
+			}
+		},
+		{
+			"Old": {
+				"Path": "k8s.io/kubernetes"
+			},
+			"New": {
+				"Path": "github.com/kmodules/kubernetes",
+				"Version": "v1.19.0-alpha.0.0.20200521033432-49d3646051ad"
+			}
+		}
+	]
+}

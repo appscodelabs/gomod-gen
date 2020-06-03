@@ -2,207 +2,123 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
-	"log"
 	"os"
-	"path/filepath"
-	"sort"
-	"strings"
 
-	"github.com/BurntSushi/toml"
-
-	"github.com/appscode/go/runtime"
 	shell "github.com/codeskyblue/go-sh"
-	"sigs.k8s.io/yaml"
+	flag "github.com/spf13/pflag"
+	"golang.org/x/mod/modfile"
+	"golang.org/x/mod/module"
 )
 
-func main() {
-	if len(os.Args) != 2 {
-		fmt.Println(`Incorrect usage. Example of correct usage:
-gomod-tools <repo_path>
-gomod-tools github.com/appscode/voyager
-`)
-		os.Exit(1)
-	}
+var modJsonFile = flag.String("gomod-json-file", "", "Path of go.mod.json file")
 
-	dir := os.Args[1]
-	if !filepath.IsAbs(dir) {
-		dir = filepath.Join(runtime.GOPath(), "src", dir)
+type Module struct {
+	Path    string
+	Version string
+}
+
+type GoMod struct {
+	Module  Module
+	Go      string
+	Require []Require
+	Exclude []Module
+	Replace []Replace
+}
+
+type Require struct {
+	Path     string
+	Version  string
+	Indirect bool
+}
+
+type Replace struct {
+	Old Module
+	New Module
+}
+
+// exists reports whether the named file or directory exists.
+func exists(name string) bool {
+	if _, err := os.Stat(name); err != nil {
+		if os.IsNotExist(err) {
+			return false
+		}
 	}
-	fmt.Println("using repo:", dir)
+	return true
+}
+
+func main() {
+	flag.Parse()
 
 	sh := shell.NewSession()
-	sh.SetEnv("GO111MODULE", "on")
-	sh.SetDir(dir)
 	sh.ShowCMD = true
 	sh.PipeFail = true
 	sh.PipeStdErrors = true
 
-	gomodFile := filepath.Join(dir, "go.mod")
-	if Exists(gomodFile) {
-		data, err := ioutil.ReadFile("k8s_deps.json")
-		if err != nil {
-			log.Fatalln(err)
-		}
-		var kp []K8sPkg
-		err = json.Unmarshal(data, &kp)
-		if err != nil {
-			log.Fatalln(err)
-		}
-		sort.Slice(kp, func(i, j int) bool { return kp[i].Package < kp[j].Package })
-
-		for _, x := range kp {
-			err = sh.Command("go", "get", "-u", fmt.Sprintf("%s@%s", x.Package, x.Version)).Run()
-			if err != nil {
-				fmt.Println(err)
-				// continue
-			}
-			if x.Repo != "" {
-				repo := x.Repo
-				repo = strings.ReplaceAll(repo, "https://", "")
-				repo = strings.ReplaceAll(repo, "http://", "")
-				repo = strings.ReplaceAll(repo, ".git", "")
-
-				// go mod edit -replace=github.com/go-macaron/binding=github.com/tamalsaha/binding@pb
-				err = sh.Command("go", "mod", "edit", fmt.Sprintf("-replace=%s=%s@%s", x.Package, repo, x.Version)).Run()
-				if err != nil {
-					fmt.Println(err)
-					// continue
-				}
-				err = sh.Command("go", "mod", "tidy").Run()
-				if err != nil {
-					fmt.Println(err)
-					// continue
-				}
-			}
-		}
-		err = sh.Command("go", "mod", "tidy").Run()
-		if err != nil {
-			fmt.Println(err)
-		}
-		err = sh.Command("go", "mod", "vendor").Run()
-		if err != nil {
-			fmt.Println(err)
-		}
-
-		return
-	}
-
-	glideFile := filepath.Join(dir, "glide.yaml")
-	if Exists(glideFile) {
-		// err := sh.Command("glide", "slow").Run()
-		// if err != nil {
-		// 	fmt.Println(err)
-		// 	// continue
-		// }
-
-		data, err := ioutil.ReadFile(glideFile)
-		if err != nil {
-			if os.IsNotExist(err) {
-				// try for dep
-			}
-			log.Fatalln(err)
-		}
-		fmt.Println("found glide.yaml: ", glideFile)
-		var cfg Glide
-		err = yaml.Unmarshal(data, &cfg)
-		if err != nil {
-			log.Fatalln(err)
-		}
-
-		err = sh.Command("go", "mod", "init").Run()
-		if err != nil {
-			fmt.Println(err)
-		}
-		for _, x := range cfg.Import {
-			if x.Repo == "" {
-				continue
-			}
-
-			repo := x.Repo
-			repo = strings.ReplaceAll(repo, "https://", "")
-			repo = strings.ReplaceAll(repo, "http://", "")
-			repo = strings.ReplaceAll(repo, ".git", "")
-
-			// go mod edit -replace=github.com/go-macaron/binding=github.com/tamalsaha/binding@pb
-			err = sh.Command("go", "mod", "edit", fmt.Sprintf("-replace=%s=%s@%s", x.Package, repo, x.Version)).Run()
-			if err != nil {
-				fmt.Println(err)
-				// continue
-			}
-			err = sh.Command("go", "mod", "tidy").Run()
-			if err != nil {
-				fmt.Println(err)
-				// continue
-			}
-		}
-		err = sh.Command("go", "mod", "tidy").Run()
-		if err != nil {
-			fmt.Println(err)
-		}
-		os.Remove(filepath.Join(dir, "glide.yaml"))
-		os.Remove(filepath.Join(dir, "glide.lock"))
-		os.Remove(filepath.Join(dir, "glide-slow"))
-		return
-	}
-
-	depFile := filepath.Join(dir, "Gopkg.toml")
-	if Exists(depFile) {
-		fmt.Println("found Gopkg.toml: ", depFile)
-
-		// err := sh.Command("dep", "ensure", "-update").Run()
-		// if err != nil {
-		// 	fmt.Println(err)
-		// 	// continue
-		// }
-
-		var cfg Dep
-		if _, err := toml.DecodeFile(depFile, &cfg); err != nil {
-			log.Fatalln(err)
-		}
-
+	if !exists("go.mod") {
 		err := sh.Command("go", "mod", "init").Run()
 		if err != nil {
-			fmt.Println(err)
+			panic(err)
 		}
-		for _, x := range append(cfg.Constraint, cfg.Override...) {
-			if x.Source == "" {
-				continue
-			}
+	}
 
-			repo := x.Source
-			repo = strings.ReplaceAll(repo, "https://", "")
-			repo = strings.ReplaceAll(repo, "http://", "")
-			repo = strings.ReplaceAll(repo, ".git", "")
+	data, err := ioutil.ReadFile(*modJsonFile)
+	if err != nil {
+		panic(err)
+	}
+	var kp GoMod
+	err = json.Unmarshal(data, &kp)
+	if err != nil {
+		panic(err)
+	}
 
-			tag := x.Version
-			if x.Version == "" {
-				if x.Revision == "" {
-					tag = x.Branch
-				} else {
-					tag = x.Revision
-				}
-			}
+	data, err = ioutil.ReadFile("go.mod")
+	if err != nil {
+		panic(err)
+	}
+	f, err := modfile.Parse("go.mod", data, nil)
+	if err != nil {
+		panic(err)
+	}
 
-			// go mod edit -replace=github.com/go-macaron/binding=github.com/tamalsaha/binding@pb
-			err = sh.Command("go", "mod", "edit", fmt.Sprintf("-replace=%s=%s@%s", x.Name, repo, tag)).Run()
-			if err != nil {
-				fmt.Println(err)
-				// continue
-			}
-			err = sh.Command("go", "mod", "tidy").Run()
-			if err != nil {
-				fmt.Println(err)
-				// continue
-			}
-		}
-		err = sh.Command("go", "mod", "tidy").Run()
+	requires := make([]*modfile.Require, 0, len(kp.Require))
+	for _, x := range kp.Require {
+		requires = append(requires, &modfile.Require{
+			Mod: module.Version{
+				Path:    x.Path,
+				Version: x.Version,
+			},
+		})
+	}
+	f.SetRequire(requires)
+	for _, x := range kp.Replace {
+		err = f.DropReplace(x.Old.Path, x.Old.Version)
 		if err != nil {
-			fmt.Println(err)
+			panic(err)
 		}
-		os.Remove(filepath.Join(dir, "Gopkg.toml"))
-		os.Remove(filepath.Join(dir, "Gopkg.lock"))
-		return
+	}
+	for _, x := range kp.Replace {
+		err = f.AddReplace(x.Old.Path, x.Old.Version, x.New.Path, x.New.Version)
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	data, err = f.Format()
+	if err != nil {
+		panic(err)
+	}
+	err = ioutil.WriteFile("go.mod", data, 0644)
+	if err != nil {
+		panic(err)
+	}
+
+	err = sh.Command("go", "mod", "tidy").Run()
+	if err != nil {
+		panic(err)
+	}
+	err = sh.Command("go", "mod", "vendor").Run()
+	if err != nil {
+		panic(err)
 	}
 }
