@@ -11,4 +11,6 @@
 ```console
 cd $module_root
 gomod-gen --gomod-json-file=kubernetes/v1.18.3/go.mod.json
+go mod tidy
+go mod vendor # if vendor wanted
 ```
