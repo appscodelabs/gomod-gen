@@ -8,7 +8,6 @@ import (
 	shell "github.com/codeskyblue/go-sh"
 	flag "github.com/spf13/pflag"
 	"golang.org/x/mod/modfile"
-	"golang.org/x/mod/module"
 )
 
 var modJsonFile = flag.String("gomod-json-file", "", "Path of go.mod.json file")
@@ -81,16 +80,13 @@ func main() {
 		panic(err)
 	}
 
-	requires := make([]*modfile.Require, 0, len(kp.Require))
 	for _, x := range kp.Require {
-		requires = append(requires, &modfile.Require{
-			Mod: module.Version{
-				Path:    x.Path,
-				Version: x.Version,
-			},
-		})
+		err = f.AddRequire(x.Path, x.Version)
+		if err != nil {
+			panic(err)
+		}
 	}
-	f.SetRequire(requires)
+
 	for _, x := range kp.Replace {
 		err = f.DropReplace(x.Old.Path, x.Old.Version)
 		if err != nil {
@@ -109,15 +105,6 @@ func main() {
 		panic(err)
 	}
 	err = ioutil.WriteFile("go.mod", data, 0644)
-	if err != nil {
-		panic(err)
-	}
-
-	err = sh.Command("go", "mod", "tidy").Run()
-	if err != nil {
-		panic(err)
-	}
-	err = sh.Command("go", "mod", "vendor").Run()
 	if err != nil {
 		panic(err)
 	}

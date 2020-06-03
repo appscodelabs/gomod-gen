@@ -1,4 +1,4 @@
-module github.com/appscodelabs/gomod-refresher
+module github.com/appscodelabs/gomod-gen
 
 go 1.14
 
