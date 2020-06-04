@@ -1,16 +1,16 @@
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
 	"os"
 
 	shell "github.com/codeskyblue/go-sh"
+	"github.com/hashicorp/go-getter"
 	flag "github.com/spf13/pflag"
 	"golang.org/x/mod/modfile"
 )
 
-var desiredModFile = flag.String("desired-gomod", "", "Path of desired go.mod file")
+var desiredModFile = flag.String("desired-gomod", "", "Path of desired go.mod file (local file or url is accepted)")
 
 // exists reports whether the named file or directory exists.
 func exists(name string) bool {
@@ -25,16 +25,21 @@ func exists(name string) bool {
 func main() {
 	flag.Parse()
 
-	data, err := ioutil.ReadFile(*desiredModFile)
+	localfile := "/tmp/go.mod"
+	err := getter.GetFile(localfile, *desiredModFile)
 	if err != nil {
 		panic(err)
 	}
 
-	desiredMods, err := modfile.ParseLax(*desiredModFile, data, nil)
+	data, err := ioutil.ReadFile(localfile)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(desiredMods.Require)
+
+	desiredMods, err := modfile.ParseLax(localfile, data, nil)
+	if err != nil {
+		panic(err)
+	}
 
 	sh := shell.NewSession()
 	sh.ShowCMD = true
