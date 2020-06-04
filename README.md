@@ -10,7 +10,7 @@
 
 ```console
 cd $module_root
-gomod-gen --gomod-json-file=kubernetes/v1.18.3/go.mod.json
+gomod-gen --desired-gomod=https://github.com/appscodelabs/gomod-gen/raw/master/kubernetes/v1.18.3/go.mod
 go mod tidy
 go mod vendor # if vendor wanted
 ```
