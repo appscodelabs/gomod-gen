@@ -1,7 +1,7 @@
 package main
 
 import (
-	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"os"
 
@@ -10,31 +10,7 @@ import (
 	"golang.org/x/mod/modfile"
 )
 
-var modJsonFile = flag.String("gomod-json-file", "", "Path of go.mod.json file")
-
-type Module struct {
-	Path    string
-	Version string
-}
-
-type GoMod struct {
-	Module  Module
-	Go      string
-	Require []Require
-	Exclude []Module
-	Replace []Replace
-}
-
-type Require struct {
-	Path     string
-	Version  string
-	Indirect bool
-}
-
-type Replace struct {
-	Old Module
-	New Module
-}
+var desiredModFile = flag.String("desired-gomod", "", "Path of desired go.mod file")
 
 // exists reports whether the named file or directory exists.
 func exists(name string) bool {
@@ -49,6 +25,17 @@ func exists(name string) bool {
 func main() {
 	flag.Parse()
 
+	data, err := ioutil.ReadFile(*desiredModFile)
+	if err != nil {
+		panic(err)
+	}
+
+	desiredMods, err := modfile.ParseLax(*desiredModFile, data, nil)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(desiredMods.Require)
+
 	sh := shell.NewSession()
 	sh.ShowCMD = true
 	sh.PipeFail = true
@@ -61,16 +48,6 @@ func main() {
 		}
 	}
 
-	data, err := ioutil.ReadFile(*modJsonFile)
-	if err != nil {
-		panic(err)
-	}
-	var kp GoMod
-	err = json.Unmarshal(data, &kp)
-	if err != nil {
-		panic(err)
-	}
-
 	data, err = ioutil.ReadFile("go.mod")
 	if err != nil {
 		panic(err)
@@ -80,20 +57,20 @@ func main() {
 		panic(err)
 	}
 
-	for _, x := range kp.Require {
-		err = f.AddRequire(x.Path, x.Version)
+	for _, x := range desiredMods.Require {
+		err = f.AddRequire(x.Mod.Path, x.Mod.Version)
 		if err != nil {
 			panic(err)
 		}
 	}
 
-	for _, x := range kp.Replace {
+	for _, x := range desiredMods.Replace {
 		err = f.DropReplace(x.Old.Path, x.Old.Version)
 		if err != nil {
 			panic(err)
 		}
 	}
-	for _, x := range kp.Replace {
+	for _, x := range desiredMods.Replace {
 		err = f.AddReplace(x.Old.Path, x.Old.Version, x.New.Path, x.New.Version)
 		if err != nil {
 			panic(err)
