@@ -25,4 +25,4 @@ cp go.mod.orig go.mod
 rm -rf go.sum
 go mod tidy || true
 
-pop
+popd
