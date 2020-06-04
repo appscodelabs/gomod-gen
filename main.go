@@ -52,7 +52,7 @@ func main() {
 		panic(err)
 	}
 
-	desiredMods, err := modfile.ParseLax(localfile, data, nil)
+	desiredMods, err := modfile.Parse(localfile, data, nil)
 	if err != nil {
 		panic(err)
 	}
