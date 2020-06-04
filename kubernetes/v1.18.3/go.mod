@@ -5,23 +5,24 @@ go 1.14
 require (
 	k8s.io/api v0.18.3
 	k8s.io/apiextensions-apiserver v0.18.3
-	k8s.io/apimachinery v0.18.3 // indirect
-	k8s.io/apiserver v0.18.3 // indirect
-	k8s.io/cli-runtime v0.18.3 // indirect
+	k8s.io/apimachinery v0.18.3
+	k8s.io/apiserver v0.18.3
+	k8s.io/cli-runtime v0.18.3
+	k8s.io/client-go v0.18.3
 	k8s.io/cloud-provider v0.18.3
-	k8s.io/component-base v0.18.3 // indirect
+	k8s.io/component-base v0.18.3
 	k8s.io/kube-aggregator v0.18.3
-	k8s.io/kubectl v0.18.3 // indirect
-	k8s.io/kubernetes v1.18.3 // indirect
+	k8s.io/kubectl v0.18.3
+	k8s.io/kubernetes v1.18.3
 	kmodules.xyz/client-go v0.0.0-20200525195850-2fd180961371
 	kmodules.xyz/crd-schema-fuzz v0.0.0-20200521005638-2433a187de95
-	kmodules.xyz/custom-resources v0.0.0-20200604135349-9e9f5c4fdba9 // indirect
-	kmodules.xyz/monitoring-agent-api v0.0.0-20200525002655-2aa50cb10ce9 // indirect
-	kmodules.xyz/objectstore-api v0.0.0-20200521103120-92080446e04d // indirect
-	kmodules.xyz/offshoot-api v0.0.0-20200521035628-e135bf07b226 // indirect
-	kmodules.xyz/openshift v0.0.0-20200522123204-ce4abf5433c8 // indirect
-	kmodules.xyz/prober v0.0.0-20200521101241-adf06150535c // indirect
-	kmodules.xyz/webhook-runtime v0.0.0-20200522123600-ca70a7e28ed0 // indirect
+	kmodules.xyz/custom-resources v0.0.0-20200604135349-9e9f5c4fdba9
+	kmodules.xyz/monitoring-agent-api v0.0.0-20200525002655-2aa50cb10ce9
+	kmodules.xyz/objectstore-api v0.0.0-20200521103120-92080446e04d
+	kmodules.xyz/offshoot-api v0.0.0-20200521035628-e135bf07b226
+	kmodules.xyz/openshift v0.0.0-20200522123204-ce4abf5433c8
+	kmodules.xyz/prober v0.0.0-20200521101241-adf06150535c
+	kmodules.xyz/webhook-runtime v0.0.0-20200522123600-ca70a7e28ed0
 )
 
 replace (

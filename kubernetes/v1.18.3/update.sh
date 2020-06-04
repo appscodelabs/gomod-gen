@@ -23,6 +23,7 @@ pwd
 
 cp go.mod.orig go.mod
 rm -rf go.sum
-go mod tidy || true
+go mod tidy
+go mod edit -require k8s.io/client-go@v0.18.3
 
 popd
