@@ -44,8 +44,8 @@ endif
 ### These variables should not need tweaking.
 ###
 
-SRC_PKGS := *.go
-SRC_DIRS := $(SRC_PKGS) # directories which hold app source (not vendored)
+SRC_PKGS :=
+SRC_DIRS := $(SRC_PKGS) *.go kubernetes # directories which hold app source (not vendored)
 
 DOCKER_PLATFORMS := linux/amd64 linux/arm linux/arm64
 BIN_PLATFORMS    := $(DOCKER_PLATFORMS) darwin/amd64
@@ -197,7 +197,7 @@ unit-tests: $(BUILD_DIRS)
 	        ARCH=$(ARCH)                                        \
 	        OS=$(OS)                                            \
 	        VERSION=$(VERSION)                                  \
-	        ./hack/test.sh $(SRC_DIRS)                          \
+	        ./hack/test.sh $(SRC_PKGS)                          \
 	    "
 
 ADDTL_LINTERS   := goconst,gofmt,goimports,unparam

@@ -17,6 +17,7 @@
 set -xeou pipefail
 
 SCRIPT_ROOT=$(dirname "${BASH_SOURCE[0]}")
+
 pushd $SCRIPT_ROOT
 pwd
 
