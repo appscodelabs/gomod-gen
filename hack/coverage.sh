@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Copyright AppsCode Inc.
 #
@@ -14,14 +14,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -xeou pipefail
+set -eou pipefail
 
-SCRIPT_ROOT=$(dirname "${BASH_SOURCE[0]}")
-pushd $SCRIPT_ROOT
-pwd
+GOPATH=$(go env GOPATH)
+REPO_ROOT="$GOPATH/src/github.com/appscode/osm"
 
-cp go.mod.orig go.mod
-rm -rf go.sum
-go mod tidy || true
+pushd $REPO_ROOT
 
-pop
+echo "" > coverage.txt
+
+for d in $(go list ./... | grep -v -e vendor -e test); do
+    go test -v -race -coverprofile=profile.out -covermode=atomic "$d"
+    if [ -f profile.out ]; then
+        cat profile.out >> coverage.txt
+        rm profile.out
+    fi
+done
+
+popd
