@@ -42,7 +42,15 @@ func main() {
 	flag.Parse()
 
 	localfile := "/tmp/go.mod"
-	err := getter.GetFile(localfile, *desiredModFile)
+	opts := func(c *getter.Client) error {
+		pwd, err := os.Getwd()
+		if err != nil {
+			return err
+		}
+		c.Pwd = pwd
+		return nil
+	}
+	err := getter.GetFile(localfile, *desiredModFile, opts)
 	if err != nil {
 		panic(err)
 	}
