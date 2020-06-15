@@ -19,14 +19,19 @@ package main
 import (
 	"io/ioutil"
 	"os"
+	"path/filepath"
 
 	shell "github.com/codeskyblue/go-sh"
+	"github.com/google/uuid"
 	"github.com/hashicorp/go-getter"
 	flag "github.com/spf13/pflag"
 	"golang.org/x/mod/modfile"
 )
 
-var desiredModFile = flag.String("desired-gomod", "", "Path of desired go.mod file (local file or url is accepted)")
+var (
+	sessionID      = uuid.New().String()
+	desiredModFile = flag.String("desired-gomod", "", "Path of desired go.mod file (local file or url is accepted)")
+)
 
 // exists reports whether the named file or directory exists.
 func exists(name string) bool {
@@ -41,7 +46,7 @@ func exists(name string) bool {
 func main() {
 	flag.Parse()
 
-	localfile := "/tmp/go.mod"
+	localfile := filepath.Join(os.TempDir(), sessionID, "go.mod")
 	opts := func(c *getter.Client) error {
 		pwd, err := os.Getwd()
 		if err != nil {
