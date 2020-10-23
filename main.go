@@ -111,6 +111,15 @@ func main() {
 		}
 	}
 
+	for _, x := range f.Require {
+		if x.Indirect {
+			err = f.DropRequire(x.Mod.Path)
+			if err != nil {
+				panic(err)
+			}
+		}
+	}
+
 	data, err = f.Format()
 	if err != nil {
 		panic(err)
