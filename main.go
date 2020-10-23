@@ -17,6 +17,7 @@ limitations under the License.
 package main
 
 import (
+	"bytes"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -124,8 +125,21 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	err = ioutil.WriteFile("go.mod", data, 0644)
+	err = ioutil.WriteFile("go.mod", removeIndirectLines(data), 0644)
 	if err != nil {
 		panic(err)
 	}
+}
+
+func removeIndirectLines(data []byte) []byte {
+	lines := bytes.Split(data, []byte{'\n'})
+
+	var buf bytes.Buffer
+	for _, line := range lines {
+		if string(bytes.TrimSpace(line)) != "// indirect" {
+			buf.Write(line)
+			buf.WriteRune('\n')
+		}
+	}
+	return buf.Bytes()
 }
