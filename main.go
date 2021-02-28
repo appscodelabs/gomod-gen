@@ -93,22 +93,28 @@ func main() {
 	}
 
 	for _, x := range desiredMods.Require {
-		err = f.AddRequire(x.Mod.Path, x.Mod.Version)
-		if err != nil {
-			panic(err)
+		if x.Mod.Path != f.Module.Mod.Path {
+			err = f.AddRequire(x.Mod.Path, x.Mod.Version)
+			if err != nil {
+				panic(err)
+			}
 		}
 	}
 
 	for _, x := range desiredMods.Replace {
-		err = f.DropReplace(x.Old.Path, x.Old.Version)
-		if err != nil {
-			panic(err)
+		if x.Old.Path != f.Module.Mod.Path {
+			err = f.DropReplace(x.Old.Path, x.Old.Version)
+			if err != nil {
+				panic(err)
+			}
 		}
 	}
 	for _, x := range desiredMods.Replace {
-		err = f.AddReplace(x.Old.Path, x.Old.Version, x.New.Path, x.New.Version)
-		if err != nil {
-			panic(err)
+		if x.Old.Path != f.Module.Mod.Path {
+			err = f.AddReplace(x.Old.Path, x.Old.Version, x.New.Path, x.New.Version)
+			if err != nil {
+				panic(err)
+			}
 		}
 	}
 
