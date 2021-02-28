@@ -44,7 +44,7 @@ github.com/aws/aws-sdk-go/service/sts
 github.com/bgentry/go-netrc/netrc
 # github.com/codegangsta/inject v0.0.0-20150114235600-33e0aa1cb7c0
 github.com/codegangsta/inject
-# github.com/codeskyblue/go-sh v0.0.0-20190412065543-76bd3d59ff27
+# github.com/codeskyblue/go-sh v0.0.0-20200712050446-30169cf553fe
 ## explicit
 github.com/codeskyblue/go-sh
 # github.com/golang/protobuf v1.3.2
@@ -54,14 +54,14 @@ github.com/golang/protobuf/ptypes
 github.com/golang/protobuf/ptypes/any
 github.com/golang/protobuf/ptypes/duration
 github.com/golang/protobuf/ptypes/timestamp
-# github.com/google/uuid v1.1.1
+# github.com/google/uuid v1.2.0
 ## explicit
 github.com/google/uuid
 # github.com/googleapis/gax-go/v2 v2.0.5
 github.com/googleapis/gax-go/v2
 # github.com/hashicorp/go-cleanhttp v0.5.0
 github.com/hashicorp/go-cleanhttp
-# github.com/hashicorp/go-getter v1.4.1
+# github.com/hashicorp/go-getter v1.5.2
 ## explicit
 github.com/hashicorp/go-getter
 github.com/hashicorp/go-getter/helper/url
@@ -73,6 +73,12 @@ github.com/hashicorp/go-version
 github.com/hashicorp/golang-lru/simplelru
 # github.com/jmespath/go-jmespath v0.0.0-20160202185014-0b12d6b521d8
 github.com/jmespath/go-jmespath
+# github.com/klauspost/compress v1.11.2
+github.com/klauspost/compress/fse
+github.com/klauspost/compress/huff0
+github.com/klauspost/compress/snappy
+github.com/klauspost/compress/zstd
+github.com/klauspost/compress/zstd/internal/xxhash
 # github.com/mitchellh/go-homedir v1.0.0
 github.com/mitchellh/go-homedir
 # github.com/mitchellh/go-testing-interface v1.0.0
@@ -80,7 +86,7 @@ github.com/mitchellh/go-testing-interface
 # github.com/spf13/pflag v1.0.5
 ## explicit
 github.com/spf13/pflag
-# github.com/ulikunitz/xz v0.5.5
+# github.com/ulikunitz/xz v0.5.8
 github.com/ulikunitz/xz
 github.com/ulikunitz/xz/internal/hash
 github.com/ulikunitz/xz/internal/xlog
@@ -102,7 +108,7 @@ go.opencensus.io/trace
 go.opencensus.io/trace/internal
 go.opencensus.io/trace/propagation
 go.opencensus.io/trace/tracestate
-# golang.org/x/mod v0.3.0
+# golang.org/x/mod v0.4.1
 ## explicit
 golang.org/x/mod/internal/lazyregexp
 golang.org/x/mod/modfile
