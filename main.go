@@ -131,7 +131,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	err = ioutil.WriteFile("go.mod", removeIndirectLines(data), 0644)
+	err = ioutil.WriteFile("go.mod", removeIndirectLines(data), 0o644)
 	if err != nil {
 		panic(err)
 	}
