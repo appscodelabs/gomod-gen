@@ -18,7 +18,6 @@ package main
 
 import (
 	"bytes"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 
@@ -61,7 +60,7 @@ func main() {
 		panic(err)
 	}
 
-	data, err := ioutil.ReadFile(localfile)
+	data, err := os.ReadFile(localfile)
 	if err != nil {
 		panic(err)
 	}
@@ -83,7 +82,7 @@ func main() {
 		}
 	}
 
-	data, err = ioutil.ReadFile("go.mod")
+	data, err = os.ReadFile("go.mod")
 	if err != nil {
 		panic(err)
 	}
@@ -131,7 +130,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	err = ioutil.WriteFile("go.mod", removeIndirectLines(data), 0o644)
+	err = os.WriteFile("go.mod", removeIndirectLines(data), 0o644)
 	if err != nil {
 		panic(err)
 	}
