@@ -1,13 +1,13 @@
 module github.com/appscodelabs/gomod-gen
 
-go 1.18
+go 1.25.0
 
 require (
 	github.com/codeskyblue/go-sh v0.0.0-20200712050446-30169cf553fe
 	github.com/google/uuid v1.3.0
 	github.com/hashicorp/go-getter v1.5.2
 	github.com/spf13/pflag v1.0.5
-	golang.org/x/mod v0.6.0-dev.0.20220419223038-86c51ed26bb4
+	golang.org/x/mod v0.35.0
 )
 
 require (
@@ -29,10 +29,10 @@ require (
 	github.com/stretchr/testify v1.8.0 // indirect
 	github.com/ulikunitz/xz v0.5.8 // indirect
 	go.opencensus.io v0.22.0 // indirect
-	golang.org/x/net v0.7.0 // indirect
+	golang.org/x/net v0.55.0 // indirect
 	golang.org/x/oauth2 v0.1.0 // indirect
-	golang.org/x/sys v0.5.0 // indirect
-	golang.org/x/text v0.7.0 // indirect
+	golang.org/x/sys v0.45.0 // indirect
+	golang.org/x/text v0.37.0 // indirect
 	google.golang.org/api v0.9.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20190819201941-24fa4b261c55 // indirect
