@@ -1,6 +1,6 @@
 module github.com/appscodelabs/gomod-gen
 
-go 1.18
+go 1.23.0
 
 require (
 	github.com/codeskyblue/go-sh v0.0.0-20200712050446-30169cf553fe
@@ -16,7 +16,6 @@ require (
 	github.com/bgentry/go-netrc v0.0.0-20140422174119-9fd32a8b3d3d // indirect
 	github.com/codegangsta/inject v0.0.0-20150114235600-33e0aa1cb7c0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
-	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/googleapis/gax-go/v2 v2.0.5 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.0 // indirect
 	github.com/hashicorp/go-safetemp v1.0.0 // indirect
@@ -30,7 +29,7 @@ require (
 	github.com/ulikunitz/xz v0.5.8 // indirect
 	go.opencensus.io v0.22.0 // indirect
 	golang.org/x/net v0.7.0 // indirect
-	golang.org/x/oauth2 v0.1.0 // indirect
+	golang.org/x/oauth2 v0.27.0 // indirect
 	golang.org/x/sys v0.5.0 // indirect
 	golang.org/x/text v0.7.0 // indirect
 	google.golang.org/api v0.9.0 // indirect
